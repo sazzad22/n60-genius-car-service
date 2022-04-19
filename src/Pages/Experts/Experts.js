@@ -20,7 +20,7 @@ const experts = [
 
 const Experts = () => {
     return (
-        <div>
+        <div id='experts' className='container'>
             <h2>Our Experts</h2>
             <div className='row'>
                 {
