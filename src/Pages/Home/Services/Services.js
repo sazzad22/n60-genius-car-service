@@ -1,24 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import Service from '../Service/Service';
-import './Services.css'
+import React, { useEffect, useState } from "react";
+import Service from "../Service/Service";
+import "./Services.css";
 
 const Services = () => {
-    const [services, setServices] = useState([]);
+  const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch("services.json")
+    fetch("http://localhost:5000/services")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
-    return (
-        <div id='services' className='container'>
-            <h2>Our Services</h2>
-            <div className='services-container'>
-            {
-              services.map(service=><Service key={service.id} service={service} ></Service>)  
-            }
-            </div>
-        </div>
-    );
+  return (
+    <div id="services" className="container">
+      <h2>Our Services</h2>
+      <div className="services-container">
+        {
+          // now db theke services er data load hocche. where id er place e _id ache. so that one has to be changed
+          services.map((service) => (
+            <Service key={service._id} service={service}></Service>
+          ))
+        }
+      </div>
+    </div>
+  );
 };
 
 export default Services;
