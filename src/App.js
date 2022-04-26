@@ -9,6 +9,7 @@ import Login from "./Pages/Login/Login";
 import ServiceDetails from "./Pages/ServiceDetails/ServiceDetails";
 import SignUp from "./Pages/SignUp/SignUp";
 import AddService from "./Pages/AddService/AddService";
+import ManageService from "./Pages/ManageService/ManageService";
 
 function App() {
   //for creating fake data to be loaded we have to use images. We can download ,resize images from online sites like freepik , unsplash. For resizing we can use Photopea.For optimizing we use sites like tinypng. For online hosting of images ,we can upload our images to imgbb.com website , in order to use the images as url links
@@ -35,6 +36,10 @@ function App() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<SignUp></SignUp>}></Route>
         <Route path="/addservice" element={<AddService></AddService>}></Route>
+        <Route
+          path="/manageservice"
+          element={<ManageService></ManageService>}
+        ></Route>
       </Routes>
       <Footer></Footer>
     </div>
