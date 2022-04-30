@@ -14,7 +14,7 @@ const ServiceDetails = () => {
     <div>
       <h3>Details:{serviceId}</h3>
       <h3>Name: {service.name}</h3>
-      <Link to="/checkout">
+      <Link to={`/checkout/${serviceId}`}>
         <button className="btn btn-primary">Proceed to Checkout</button>
       </Link>
     </div>
