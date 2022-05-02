@@ -12,6 +12,8 @@ import AddService from "./Pages/AddService/AddService";
 import ManageService from "./Pages/ManageService/ManageService";
 import RequireAuth from "./Pages/RequreAuth/RequireAuth";
 import Checkout from "./Pages/Checkout/Checkout";
+import { ToastContainer } from "react-toastify";
+import Orders from "./Pages/Orders/Orders";
 
 function App() {
   //for creating fake data to be loaded we have to use images. We can download ,resize images from online sites like freepik , unsplash. For resizing we can use Photopea.For optimizing we use sites like tinypng. For online hosting of images ,we can upload our images to imgbb.com website , in order to use the images as url links
@@ -43,6 +45,14 @@ function App() {
           element={<ManageService></ManageService>}
         ></Route>
         <Route
+          path="/orders"
+          element={
+            <RequireAuth>
+              <Orders></Orders>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
           path="/checkout/:serviceId"
           element={
             <RequireAuth>
@@ -51,7 +61,9 @@ function App() {
           }
         ></Route>
       </Routes>
+
       <Footer></Footer>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

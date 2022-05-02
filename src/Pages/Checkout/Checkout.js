@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import useServiceDetails from "../../hooks/useServiceDetails";
 import auth from "../../firebase.init";
 import axios from "axios";
+import { toast } from "react-toastify";
 const Checkout = () => {
   const { serviceId } = useParams();
   const [service] = useServiceDetails(serviceId);
@@ -12,16 +13,21 @@ const Checkout = () => {
   const handlePlaceOrder = (event) => {
     event.preventDefault();
     const order = {
-      email: service.email,
+      email: user.email,
       service: service.name,
       serviceId: serviceId,
-      address: event.target.value,
+      address: event.target.address.value,
       phone: event.target.phone.value,
     };
     //axios is a better alternative for fetch
     axios.post("http://localhost:5000/order", order).then((response) => {
-      console.log(response.data);
+      const { data } = response;
+      if (data.insertedId) {
+        toast("Your order is booked!!");
+        event.target.reset();
+      }
     });
+    console.log(order);
   };
 
   return (
