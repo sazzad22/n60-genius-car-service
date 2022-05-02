@@ -1,18 +1,36 @@
 import React, { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Helmet } from "react-helmet-async";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
 
 const Login = () => {
   //here we use useref - useRef is a hook ,jeta mutable reference object return kore
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const navigate = useNavigate();
+  const location = useLocation();
+  let errorElement;
+  let from = location.state?.from?.pathname || "/";
 
-  const handleSubmit = (event) => {
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  if (error) {
+    errorElement = <p className="text-danger">Error: {error?.message}</p>;
+  }
+  if (user) {
+    navigate(from, { replace: true });
+  }
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+
+    await signInWithEmailAndPassword(email, password);
+
     console.log(email, password);
   };
   const navigateRegister = (e) => {
@@ -52,6 +70,7 @@ const Login = () => {
         <Button variant="primary" type="submit">
           Submit
         </Button>
+        {errorElement}
         <p>
           New to genius car?{" "}
           <Link

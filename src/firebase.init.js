@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import getAuth from 'firebase/auth';
+import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -11,7 +11,7 @@ const firebaseConfig = {
   projectId: "genius-car-service-639f1",
   storageBucket: "genius-car-service-639f1.appspot.com",
   messagingSenderId: "868313390124",
-  appId: "1:868313390124:web:583e4fe2354dbdea614589"
+  appId: "1:868313390124:web:583e4fe2354dbdea614589",
 };
 
 // Initialize Firebase
